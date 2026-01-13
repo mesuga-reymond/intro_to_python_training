@@ -1,0 +1,5 @@
+Farm_ID,Crop,Hectares
+001,Palay,2.5
+002,Corn,1.0
+003,Coconut,5.0
+004,Mango,3.2
