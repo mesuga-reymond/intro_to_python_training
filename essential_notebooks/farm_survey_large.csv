@@ -1,0 +1,16 @@
+Farm_ID,Region,Crop,Farm_Area_ha,Production_mt
+1,I,Rice,2.5,5.0
+2,II,Corn,3.0,4.2
+3,III,Rice,1.8,3.5
+4,III,Banana,2.0,6.0
+5,IV,Corn,2.2,4.0
+6,V,Rice,3.5,7.2
+7,I,Banana,1.5,2.8
+8,II,Rice,2.0,4.1
+9,V,Corn,4.0,6.8
+10,III,Rice,2.2,5.1
+11,II,Banana,3.1,6.2
+12,I,Corn,2.7,5.5
+13,IV,Rice,3.3,7.0
+14,V,Banana,1.9,3.9
+15,III,Corn,2.5,5.0

@@ -1,0 +1,677 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.19.2"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "dde20300678ff3cb9554b265879dea74",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "6e83a16abbd4a086fce7c431e6ac81a9",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "683a8ae5df1c962634bcd1b1c1611960",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"41-introduction-to-dataframes\">4.1 Introduction to DataFrames</h1>\n<span class=\"paragraph\">DataFrames are the central structure for working with tabular data in Python.\nThey allow us to organize, manipulate, and analyze survey data easily.</span>\n<span class=\"paragraph\">Two popular libraries for DataFrames are:</span>\n<ol>\n<li><strong>pandas</strong> \u2013 widely used, easy to learn</li>\n<li><strong>polars</strong> \u2013 newer, faster, optimized for large datasets</li>\n</ol>\n<span class=\"paragraph\">In the context of the Philippine Statistics Authority (PSA) agricultural surveys, the data may look something like this:</span>\n<ul>\n<li>Each <strong>row</strong> represents a farm, household, or agricultural plot</li>\n<li>Each <strong>column</strong> represents a survey variable (crop type, farm area, production, etc.)</li>\n<li>Each <strong>cell</strong> contains a recorded value from the survey</li>\n</ul>\n<span class=\"paragraph\">Understanding DataFrames is essential before moving on to data cleaning, analysis, geospatial work, and eventually AI/ML.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "e2989ef37530e073e73fc7a9514f22bb",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "c8b7a28d1cf09fd0344a56c276ad3e9d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">We import <strong>pandas</strong> and <strong>polars</strong> to allow side-by-side comparison.\nLater, you will see that <strong>almost all concepts are identical</strong> between the two libraries.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "5c8ba4eb81e6bc2b74bdeed28e8acd54",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "d41192a324885684813c7e5a291820ef",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "1225a675aaa5004e83b87b1e7bb68571",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Explanation:</strong></span>\n<ul>\n<li>Each value represents the crop planted by a farm</li>\n<li>Index (0,1,2,3) represents individual survey records</li>\n<li><code>Crop_Type</code> describes the variable</li>\n</ul>\n<span class=\"paragraph\">Polars Series are similar to pandas Series, but optimized for <strong>speed and larger datasets</strong>.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "8140851e4711a410e34e7b4fc51f5567",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='BYtC-0' random-id='add9d99a-f56e-0cb5-c22b-c80258918d6a'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;Region&#92;&quot;:&#92;&quot;IV-A&#92;&quot;,&#92;&quot;Crop&#92;&quot;:&#92;&quot;Rice&#92;&quot;,&#92;&quot;Farm_Area_ha&#92;&quot;:1.2,&#92;&quot;Production_mt&#92;&quot;:4.8},{&#92;&quot;Region&#92;&quot;:&#92;&quot;IV-A&#92;&quot;,&#92;&quot;Crop&#92;&quot;:&#92;&quot;Corn&#92;&quot;,&#92;&quot;Farm_Area_ha&#92;&quot;:0.8,&#92;&quot;Production_mt&#92;&quot;:2.1},{&#92;&quot;Region&#92;&quot;:&#92;&quot;III&#92;&quot;,&#92;&quot;Crop&#92;&quot;:&#92;&quot;Rice&#92;&quot;,&#92;&quot;Farm_Area_ha&#92;&quot;:2.5,&#92;&quot;Production_mt&#92;&quot;:10.2},{&#92;&quot;Region&#92;&quot;:&#92;&quot;III&#92;&quot;,&#92;&quot;Crop&#92;&quot;:&#92;&quot;Banana&#92;&quot;,&#92;&quot;Farm_Area_ha&#92;&quot;:1.0,&#92;&quot;Production_mt&#92;&quot;:7.5}]&quot;' data-total-rows='4' data-total-columns='4' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;Region&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Crop&quot;,[&quot;string&quot;,&quot;object&quot;]],[&quot;Farm_Area_ha&quot;,[&quot;number&quot;,&quot;float64&quot;]],[&quot;Production_mt&quot;,[&quot;number&quot;,&quot;float64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "96fd5c34534d8874945dbd669aa2ae23",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "52478582a653a62ac98a37a901c2d5e6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Key Points:</strong></span>\n<ul>\n<li>Both pandas and polars DataFrames represent the complete survey table</li>\n<li>Each column is a Series internally</li>\n<li>Each row is a single farm / survey record</li>\n<li>For now, understanding the <strong>DataFrame concept</strong> is more important than the library used</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "174b5d9dbff88d6ba53828f374aeadbb",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"42-basic-dataframe-operations\">4.2 Basic DataFrame Operations</h2>\n<span class=\"paragraph\">Once you have a DataFrame, the next step is to <strong>inspect, select, filter, and manipulate</strong> data.</span>\n<span class=\"paragraph\">In the context of agricultural surveys, these operations allow analysts to:</span>\n<ul>\n<li>Look at specific variables (columns)</li>\n<li>Filter farms by region, crop, or production</li>\n<li>Create new calculated variables (e.g., yield per hectare)</li>\n</ul>\n<span class=\"paragraph\">We will demonstrate <strong>pandas</strong> and <strong>polars</strong> equivalents side by side.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "90c45aaa872e1cbfc0bd876977add38d",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "f3c88f757f396981883e5bd55043be26",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": "97da22b7281060717af4f2e52fa6ef01",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Selecting Columns</strong></span>\n<ul>\n<li><strong>What we did:</strong> Extracted a single column (<code>Farm_Area_ha</code>) from the DataFrame.</li>\n<li><strong>Pandas:</strong> Use <code>df[\"column_name\"]</code> to select a column.</li>\n<li><strong>Polars:</strong> Use <code>df[\"column_name\"]</code> as well.</li>\n<li><strong>Why it\u2019s useful:</strong> Analysts often need to work with one variable at a time, e.g., calculating statistics like mean farm size.</li>\n<li><strong>Note:</strong> Both libraries treat a column as a Series internally.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "VuDd",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ZHCJ",
+      "code_hash": "3a9eff4d02b092df477d2e68eca51168",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='ZHCJ-0' random-id='8092bbae-8f85-832c-cfa6-0afffc0094ee'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;&#92;&quot;:&#92;&quot;Region&#92;&quot;,&#92;&quot;2&#92;&quot;:&#92;&quot;III&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;Crop&#92;&quot;,&#92;&quot;2&#92;&quot;:&#92;&quot;Rice&#92;&quot;},{&#92;&quot;&#92;&quot;:&#92;&quot;Farm_Area_ha&#92;&quot;,&#92;&quot;2&#92;&quot;:2.5},{&#92;&quot;&#92;&quot;:&#92;&quot;Production_mt&#92;&quot;,&#92;&quot;2&#92;&quot;:10.2}]&quot;' data-total-rows='4' data-total-columns='1' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;2&quot;,[&quot;string&quot;,&quot;object&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[[&quot;&quot;,[&quot;string&quot;,&quot;object&quot;]]]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ROlb",
+      "code_hash": "71092030650c492c5139bff4665f2655",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "qnkX",
+      "code_hash": "306641ef53ac65df6c3084df6d29aeca",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Filtering Rows</strong></span>\n<ul>\n<li><strong>What we did:</strong> Selected only farms in Region 'III'.</li>\n<li><strong>Pandas:</strong> Boolean indexing <code>df[df[\"Region\"] == \"III\"]</code>.</li>\n<li><strong>Polars:</strong> <code>filter(pl.col(\"Region\") == \"III\")</code>.</li>\n<li><strong>Why it\u2019s useful:</strong> Filtering lets you analyze subsets of data, like a specific region or crop type.</li>\n<li><strong>Tip:</strong> Combine multiple conditions with <code>&amp;</code> (and) or <code>|</code> (or) for more complex filters.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TqIu",
+      "code_hash": "57497e2612e898ccccc7aab4fdcb9db9",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Vxnm",
+      "code_hash": "ab7c5b00284e2af68e05e308d4fe7f16",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "DnEU",
+      "code_hash": "7cd6e3b27e34be71078efeac41217164",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Calculating Yield</strong></span>\n<ul>\n<li><strong>What we did:</strong> Created a new column <code>Yield_mt_per_ha</code> by dividing Production by Farm Area.</li>\n<li><strong>Pandas:</strong> Simply assign a new column with the calculation.</li>\n<li><strong>Polars:</strong> Use <code>with_columns()</code> and <code>alias()</code> to create the new column.</li>\n<li><strong>Why it\u2019s useful:</strong> Yield is a key metric in agriculture; derived columns allow analysts to compute new variables from existing data.</li>\n<li><strong>Tip:</strong> Always check that units are consistent (e.g., hectares vs. square meters) before calculation.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ulZA",
+      "code_hash": "b211c25c26c0cb4b38f52eb529309614",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Key points:</strong></span>\n<ul>\n<li>Column selection works similarly in pandas and polars</li>\n<li>Row filtering is essential for analyzing specific regions or crops</li>\n<li>Derived columns allow calculation of metrics like yield</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ecfG",
+      "code_hash": "a7a04cf610f001e3689ae3bda6d425f0",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"43-advanced-dataframe-operations\">4.3 Advanced DataFrame Operations</h2>\n<span class=\"paragraph\">In real-world survey data, we often need to:</span>\n<ul>\n<li>Combine datasets (merging/joining)</li>\n<li>Handle missing or incomplete data</li>\n</ul>\n<span class=\"paragraph\">These operations are <strong>Advanced-level</strong> and prepare analysts for more complex data tasks, like geospatial joins or AI/ML preprocessing.</span>\n<span class=\"paragraph\">We will demonstrate both <strong>pandas</strong> and <strong>polars</strong> approaches.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Pvdt",
+      "code_hash": "304d951779c658539687c1ca750ae79b",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ZBYS",
+      "code_hash": "916599676200fc29e8c6c653fe2f0051",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "aLJB",
+      "code_hash": "c0140f60c7edd299caec7910972063f8",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Merging DataFrames</strong></span>\n<ul>\n<li><strong>What we did:</strong> Combined two separate tables (farm info and crop production) using a common key (<code>Farm_ID</code>).</li>\n<li><strong>Pandas:</strong> <code>pd.merge(df1, df2, on=\"Farm_ID\")</code> performs an inner join by default.</li>\n<li><strong>Polars:</strong> <code>df1.join(df2, on=\"Farm_ID\")</code> achieves the same result.</li>\n<li><strong>Why it\u2019s useful:</strong> Survey data often comes in separate tables (farm owners, production, yields). Merging allows analysis across datasets.</li>\n<li><strong>Tip:</strong> Always check that the key column (<code>Farm_ID</code>) is unique or matches correctly in both tables to avoid unexpected duplicates.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nHfw",
+      "code_hash": "acbacf479c51dda107ef15a0dbfe9be3",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "xXTn",
+      "code_hash": "2d15bbe12e7135d8daea47ffe769de25",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "AjVT",
+      "code_hash": "a70bf98ca6041e675ef60327ed501490",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Handling Missing Values</strong></span>\n<ul>\n<li><strong>What we did:</strong> Detected missing values (<code>None</code> / <code>NaN</code>) and filled them with the mean of the column.</li>\n<li><strong>Pandas:</strong> <code>fillna()</code> replaces missing values; <code>dropna()</code> could remove rows entirely.</li>\n<li><strong>Polars:</strong> <code>fill_null()</code> performs a similar function.</li>\n<li><strong>Why it\u2019s useful:</strong> Missing values are common in surveys (e.g., respondents skipped questions). Filling them allows calculations like averages or totals without errors.</li>\n<li><strong>Tip:</strong> Decide carefully whether to <strong>fill</strong>, <strong>drop</strong>, or <strong>impute</strong> based on the type of analysis and data quality.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "pHFh",
+      "code_hash": "2e4fd0dd4adda47b9ddf2240c31f56cd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"44-reading-and-writing-data\">4.4 Reading and Writing Data</h2>\n<span class=\"paragraph\">Survey data often comes from <strong>files</strong> rather than pre-built DataFrames.\nIn this section, we will:</span>\n<ul>\n<li>Read CSV files</li>\n<li>Save DataFrames to CSV</li>\n<li>Verify data types</li>\n</ul>\n<span class=\"paragraph\">We will use the <strong>farm_survey_large.csv</strong> dataset for these exercises.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "NCOB",
+      "code_hash": "5f98c7380cd34710fd8cc3b4c8faa666",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "aqbW",
+      "code_hash": "1b1794eee265dfbaee5d8844666c31ce",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "TRpd",
+      "code_hash": "1a40213c64e1ce6b6c884b906d1abf10",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Reading CSV</strong></span>\n<ul>\n<li><strong>What we did:</strong> Loaded <code>farm_survey_large.csv</code> into section-specific DataFrames (<code>df_pd_farm</code>, <code>df_pl_farm</code>).</li>\n<li><strong>Pandas:</strong> <code>pd.read_csv()</code> loads CSV data; <code>head()</code> shows first rows.</li>\n<li><strong>Polars:</strong> <code>pl.read_csv()</code> is optimized for larger datasets.</li>\n<li><strong>Why it\u2019s useful:</strong> Survey datasets often come in CSV format. Loading correctly is essential for analysis.</li>\n<li><strong>Tip:</strong> Always check the first few rows to ensure data loaded correctly.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TXez",
+      "code_hash": "8e067baf6741b99999e5791e9476c7fd",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "dNNg",
+      "code_hash": "1a3454ca219e45c8d235033f1208f272",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "yCnT",
+      "code_hash": "5c190cdb16534c2a261c41dce1df27b9",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Writing CSV with Changes</strong></span>\n<ul>\n<li><strong>What we did:</strong> Added a new column <code>Yield_mt_per_ha</code> before saving the CSV.</li>\n<li><strong>Why it\u2019s useful:</strong> Makes the output CSV more meaningful for analysis and reports.</li>\n<li><strong>Tip:</strong> Any transformation (new columns, filtered rows, renamed columns) before saving will create a CSV that is different from the original input, which is often the real-world scenario.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "wlCL",
+      "code_hash": "27d8a31e02339f40837e5e4e167824a6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"45-calculations-and-plots\">4.5 Calculations and Plots</h2>\n<span class=\"paragraph\">Using the farm survey dataset with the new <code>Yield_mt_per_ha</code> column, we will:</span>\n<ul>\n<li>Summarize production and yield by <strong>Crop</strong> or <strong>Region</strong></li>\n<li>Calculate basic statistics</li>\n<li>Visualize the data with bar charts, scatter plots, and histograms</li>\n</ul>\n<span class=\"paragraph\">This helps survey analysts quickly explore agricultural data.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "kqZH",
+      "code_hash": "a57c1cfece027802490f63d929f63c31",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "wAgl",
+      "code_hash": "05748a30baf9fc7bbb68ec6451217824",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "rEll",
+      "code_hash": "494971fd97e074759f36c883aec38771",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "dGlV",
+      "code_hash": "7d36c5b086dab6d53f1973d84fa62f85",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "SdmI",
+      "code_hash": "9dd36a0666fab1c229d181599d824902",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Grouping by Crop</strong></span>\n<ul>\n<li><strong>What we did:</strong> Summed <code>Production_mt</code> for each crop type.</li>\n<li><strong>Pandas:</strong> Use <code>groupby()</code> + aggregation functions.</li>\n<li><strong>Polars:</strong> Use <code>group_by().agg()</code>.</li>\n<li><strong>Why it\u2019s useful:</strong> Helps identify which crops contribute most to total production.</li>\n<li><strong>Tip:</strong> Can also group by Region or by Crop + Region for more detailed analysis.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lgWD",
+      "code_hash": "a9342dd0f9051e1a28ce38128adc0913",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "yOPj",
+      "code_hash": "c93b87b6feb240e6ae29247a440b73d5",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "fwwy",
+      "code_hash": "d3ba8bf7d4e0f7f3ced395acc8352419",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Discussion: Bar Chart</strong></span>\n<ul>\n<li><strong>What we did:</strong> Visualized total production per crop using a bar chart.</li>\n<li><strong>Pandas:</strong> Built-in <code>plot.bar()</code> is simple for quick charts.</li>\n<li><strong>Polars:</strong> Convert to pandas for plotting.</li>\n<li><strong>Why it\u2019s useful:</strong> Visualizations allow analysts to quickly understand which crops dominate production.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "LJZf",
+      "code_hash": "41ba0a467dbe67d79e4d78d173b60932",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "urSm",
+      "code_hash": "1cfdd4a2f6f3be39bc9d77c1c362facf",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "jxvo",
+      "code_hash": "1c0d892dcd7dd6a9303f1f8085bfedb2",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"46-optional-geospatial-calculations\">4.6 Optional Geospatial Calculations</h2>\n<span class=\"paragraph\">In agricultural surveys, geospatial analysis helps identify:</span>\n<ul>\n<li>How far farms are from each other</li>\n<li>Farms that are geographically close</li>\n<li>Patterns or clusters that may affect logistics or farm management</li>\n<li>Farms that are efficient when combining yield and proximity</li>\n</ul>\n<span class=\"paragraph\">In this section, we calculate distances between farms using their <strong>latitude and longitude</strong> (using <strong>Euclidean distance</strong>). We also practice:</span>\n<ul>\n<li>Filtering farm pairs by distance</li>\n<li>Summarizing crop yields</li>\n<li>Calculating farm efficiency metrics</li>\n</ul>\n<span class=\"paragraph\">Students will use both <strong>Pandas</strong> and <strong>Polars</strong> throughout.</span>\n<span class=\"paragraph\"><strong>Learning objectives:</strong></span>\n<ol>\n<li>Compute distances between farms using <strong>latitude and longitude</strong> (Euclidean approximation).</li>\n<li>Filter farm pairs that are <strong>\u201cclose\u201d</strong> based on a distance threshold.</li>\n<li>Summarize crop production by grouping farms by crop type.</li>\n<li>Calculate farm <strong>efficiency</strong> by combining yield and distance metrics.</li>\n<li>Practice using <strong>both Pandas and Polars</strong> for geospatial operations and aggregations.</li>\n</ol>\n<span class=\"paragraph\"><strong>Notes:</strong></span>\n<ul>\n<li>For simplicity in exercises we use <strong>Euclidean distance</strong>, which is sufficient for small-scale survey datasets.</li>\n<li>Distance values are <strong>in degrees</strong>, but can be roughly converted to kilometers by multiplying by ~111 km/degree.</li>\n<li>The <strong>Efficiency</strong> metric combines Yield and Distance to identify top-performing farms in both productivity and proximity.</li>\n<li>This section is optional, but recommended for survey analysts who want to <strong>combine spatial thinking with data analysis</strong>.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "mWxS",
+      "code_hash": "a2e3e5ad42c597c26d3121cc3e17eb1a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"46-exercises-geospatial-calculations\">4.6 Exercises \u2013 Geospatial Calculations</h2>\n<table>\n<thead>\n<tr>\n<th>Exercise Name</th>\n<th>Topics</th>\n<th>Python, Geospatial, or AI/ML topics covered</th>\n<th>Description</th>\n<th>Level</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Visualize Farm Locations</td>\n<td>pandas, matplotlib</td>\n<td>Python, Geospatial</td>\n<td>Plot farm locations on a scatter plot using latitude and longitude.</td>\n<td>Beginner</td>\n</tr>\n<tr>\n<td>Compute Euclidean Distance Between Farms</td>\n<td>pandas, polars, numpy</td>\n<td>Python, Geospatial</td>\n<td>Calculate Euclidean distances between farm pairs using latitude and longitude.</td>\n<td>Intermediate</td>\n</tr>\n<tr>\n<td>Filter Nearby Farms</td>\n<td>pandas, polars</td>\n<td>Python, Geospatial</td>\n<td>Identify farm pairs that are within a certain distance threshold (e.g., 0.15 degrees or ~16.5 km).</td>\n<td>Beginner</td>\n</tr>\n<tr>\n<td>Group Crop Yield</td>\n<td>pandas, polars</td>\n<td>Python, Geospatial</td>\n<td>Summarize crop production by grouping farms by crop type and calculating total and average yield.</td>\n<td>Intermediate</td>\n</tr>\n<tr>\n<td>Analyze Farm Efficiency</td>\n<td>pandas, polars</td>\n<td>Python, Geospatial, Data Aggregation</td>\n<td>Calculate an efficiency metric combining yield and distance to identify top-performing farms.</td>\n<td>Advanced</td>\n</tr>\n</tbody>\n</table></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "CcZR",
+      "code_hash": "f83c43a213d87440d63d91def23ea7fa",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"exercise-1-visualize-farm-locations\">Exercise 1: Visualize Farm Locations</h3>\n<span class=\"paragraph\"><strong>Objective:</strong>\nPlot the farm locations on a scatter plot using latitude and longitude.</span>\n<span class=\"paragraph\"><strong>Instructions:</strong></span>\n<ol>\n<li>Use <code>df_pd_farms</code> (Pandas) or <code>df_pl_farms</code> (Polars)</li>\n<li>Plot <code>Longitude</code> on the x-axis and <code>Latitude</code> on the y-axis</li>\n<li>Add labels, a title, and markers for clarity</li>\n<li>Optional: Try different marker sizes or colors to differentiate farms</li>\n</ol>\n<span class=\"paragraph\"><strong>Level:</strong> Beginner\n<strong>Topics:</strong> Pandas, Polars, Matplotlib, Python, Geospatial</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "YWSi",
+      "code_hash": "07ca3c9d27ac2fc7592b52e76c2b6fdc",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "zlud",
+      "code_hash": "bd3107be4e6ae9ce2d39b90da20eab7f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "tZnO",
+      "code_hash": "6eae4a4e0e2cb4788e9b7f90f3d4b7c4",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Explanation of the Solution:</strong></span>\n<ul>\n<li><code>plt.scatter()</code> creates a scatter plot of all farms.</li>\n<li><code>Longitude</code> is plotted on the x-axis and <code>Latitude</code> on the y-axis.</li>\n<li><code>plt.text()</code> labels each point with the farm name.</li>\n<li>Adding <code>grid(True)</code> helps with visual reference.</li>\n<li>Students can experiment with marker size, color, or different styles to make the plot clearer.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "xvXZ",
+      "code_hash": "6d3d74ff64f72cf82262957c9969cdca",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"exercise-2-calculate-distance-between-farms\">Exercise 2: Calculate Distance Between Farms</h3>\n<span class=\"paragraph\"><strong>Objective:</strong>\nCompute the Euclidean distance between each pair of farms using latitude and longitude.</span>\n<span class=\"paragraph\"><strong>Instructions:</strong></span>\n<ol>\n<li>Use <code>df_pd_pairs</code> (Pandas) or <code>df_pl_pairs</code> (Polars)</li>\n<li>Compute distance using Euclidean formula:</li>\n</ol>\n<span class=\"paragraph\">Distance = sqrt((Lat2 - Lat1)^2 + (Lon2 - Lon1)^2)</span>\n<ol start=\"3\">\n<li>Add a new column <code>Distance</code> with the computed distances</li>\n<li>Optional: Convert the distance to approximate kilometers by multiplying by 111</li>\n<li>Optional: Filter farm pairs with distance &lt; 0.15 degrees (or &lt; ~16 km)</li>\n</ol>\n<span class=\"paragraph\"><strong>Level:</strong> Intermediate\n<strong>Topics:</strong> Pandas, Polars, Python, Geospatial</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "CLip",
+      "code_hash": "e4c6d590b215f1e087a7f5ee66a25f81",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "YECM",
+      "code_hash": "3196a609048ce27b9b8830016b9ef863",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "cEAS",
+      "code_hash": "771ea0a2493b8f48a3be5b4627fc4e46",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "iXej",
+      "code_hash": "924a6e66e5142e1558e1ea83932be239",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Explanation of the Solution:</strong></span>\n<ul>\n<li><strong>Euclidean distance</strong> is a simple way to measure straight-line distance between two points.</li>\n<li>Pandas allows vectorized calculations using <code>**2</code> for squares and <code>np.sqrt()</code> for the square root.</li>\n<li>Polars uses expressions with <code>with_columns()</code> to compute the distance efficiently.</li>\n<li>In this example, the result ~0.14866 is <strong>in degrees</strong>, because latitude and longitude are angular measurements.</li>\n<li>\n<span class=\"paragraph\">Optional conversion to kilometers: multiply the degree-based distance by ~111 km per degree.</span>\n<ul>\n<li>0.14866 degrees \u2192 ~16.5 km.</li>\n</ul>\n</li>\n<li>Optional filtering can identify <strong>farm pairs that are very close</strong>, e.g.:</li>\n</ul>\n<span class=\"paragraph\"><strong>Pandas:</strong> <code>df_pd_pairs[df_pd_pairs['Distance'] &lt; 0.15]</code>\n<strong>Polars:</strong> <code>df_pl_pairs_dist.filter(pl.col('Distance') &lt; 0.15)</code></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "EJmg",
+      "code_hash": "54298cd0727cf33f3b09aec793645ff7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"exercise-3-filter-nearby-farms\">Exercise 3: Filter Nearby Farms</h3>\n<span class=\"paragraph\"><strong>Objective:</strong>\nIdentify farm pairs that are \u201cclose\u201d to each other using the distance calculated previously.</span>\n<span class=\"paragraph\"><strong>Instructions:</strong></span>\n<ol>\n<li>Use <code>df_pd_pairs</code> (Pandas) or <code>df_pl_pairs_dist</code> (Polars)</li>\n<li>\n<span class=\"paragraph\">Filter farm pairs based on:</span>\n<ul>\n<li><strong>Distance in degrees &lt; 0.15</strong> OR</li>\n<li><strong>Distance in km &lt; 16.5 km</strong></li>\n</ul>\n</li>\n<li>Display the filtered dataset</li>\n</ol>\n<span class=\"paragraph\"><strong>Hints:</strong></span>\n<ul>\n<li>In Pandas, use boolean indexing: <code>df[df['Distance'] &lt; 0.15]</code></li>\n<li>In Polars, use <code>.filter(pl.col('Distance') &lt; 0.15)</code></li>\n</ul>\n<span class=\"paragraph\"><strong>Level:</strong> Beginner\n<strong>Topics:</strong> Pandas, Polars, Python, Geospatial</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "UmEG",
+      "code_hash": "688aa9250669b9bd5adaeca2768f35cc",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vEBW",
+      "code_hash": "a14161754275afd7ffaf5d0e99f6a9e4",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "kLmu",
+      "code_hash": "808443e47cf1b92e969d888cd1ac4dae",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Explanation of the Solution:</strong></span>\n<ul>\n<li>This exercise filters farm pairs based on the <strong>Euclidean distance</strong> calculated previously.</li>\n<li>In <strong>Pandas</strong>, we use a simple boolean condition.</li>\n<li>In <strong>Polars</strong>, we use <code>.filter(pl.col('Distance') &lt; 0.15)</code>.</li>\n<li>Distance values are <strong>in degrees</strong> (latitude/longitude), optional conversion to km: 0.15\u00b0 \u2248 16.65 km.</li>\n<li>\n<span class=\"paragraph\">This exercise shows how to:</span>\n<ul>\n<li>Filter rows based on numeric conditions</li>\n<li>Use both Pandas and Polars</li>\n<li>Focus analysis on meaningful subsets of survey data</li>\n</ul>\n</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "IpqN",
+      "code_hash": "820264c85fb11ec5d2ec03b16e59ad8d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"exercise-4-group-crop-yield\">Exercise 4: Group Crop Yield</h3>\n<span class=\"paragraph\"><strong>Objective:</strong>\nUsing the <code>farm_survey_large</code> dataset, summarize crop production by grouping the data by crop type and calculating total and average yield.</span>\n<span class=\"paragraph\"><strong>Instructions:</strong></span>\n<ol>\n<li>Use <code>df_pd</code> (Pandas) or <code>df_pl</code> (Polars)</li>\n<li>Perform a <strong>group by</strong> on the column <code>Crop</code></li>\n<li>\n<span class=\"paragraph\">Calculate:</span>\n<ul>\n<li>Total yield per crop</li>\n<li>Average yield per crop</li>\n</ul>\n</li>\n<li>Display the results sorted by <strong>total yield descending</strong></li>\n</ol>\n<span class=\"paragraph\"><strong>Level:</strong> Intermediate\n<strong>Topics:</strong> Pandas, Polars, Python, Data Aggregation</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dxZZ",
+      "code_hash": "a2ca5cb38da96cf17373d940049a86ff",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "dlnW",
+      "code_hash": "ab3e9c25fb533668227345b8094fc3b0",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "TTti",
+      "code_hash": "07516d367b5d31c10210e9ec011781ab",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "RKFZ",
+      "code_hash": "522d359adb115996f67925af55ba98ad",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Explanation of the Solution:</strong></span>\n<ul>\n<li>We added a <strong>synthetic <code>Yield</code> column</strong> to simulate realistic crop production values for each farm.</li>\n<li><strong>Grouping by <code>Crop</code></strong> allows us to summarize total and average yield per crop.</li>\n<li>In <strong>Pandas</strong>, <code>groupby(\"Crop\")</code> with <code>.sum()</code> and <code>.mean()</code> efficiently calculates total and average yield.</li>\n<li>In <strong>Polars</strong>, <code>group_by(\"Crop\").agg([...])</code> achieves the same result in a single, fast operation.</li>\n<li>\n<span class=\"paragraph\"><strong>Sorting by total yield</strong> highlights which crops contribute the most to production.</span>\n<ul>\n<li>In Pandas, <code>sort_values(\"Yield\", ascending=False)</code> is used.</li>\n<li>In Polars, <code>sort(\"Total_Yield\", descending=True)</code> is used (note <code>descending=True</code> replaces <code>reverse=True</code>).</li>\n</ul>\n</li>\n<li>These techniques are fundamental for <strong>summarizing agricultural survey data</strong> and identifying important patterns.</li>\n<li>\n<span class=\"paragraph\">Optional extension:</span>\n<ul>\n<li>\n<span class=\"paragraph\">You can <strong>filter crops with low total yield</strong> to focus analysis on high-performing crops:</span>\n<ul>\n<li><strong>Pandas:</strong> <code>total_yield_pd[total_yield_pd[\"Yield\"] &gt; 5000]</code></li>\n<li><strong>Polars:</strong> <code>yield_summary_pl.filter(pl.col(\"Total_Yield\") &gt; 5000)</code></li>\n</ul>\n</li>\n</ul>\n</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "IaQp",
+      "code_hash": "efb0f0f97c12f8f92936a8b888bd935e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"exercise-5-analyze-farm-efficiency\">Exercise 5: Analyze Farm Efficiency</h3>\n<span class=\"paragraph\"><strong>Objective:</strong>\nIdentify farms that are most \u201cefficient\u201d by combining yield and proximity information. For example, farms with high yield that are close to other farms.</span>\n<span class=\"paragraph\"><strong>Instructions:</strong></span>\n<ol>\n<li>Use df_farms (Pandas) or df_farms_pl (Polars)</li>\n<li>\n<span class=\"paragraph\">Create a new column Efficiency Score defined as:</span>\n<ul>\n<li><code>Efficiency = Yield / (1 + Distance)</code></li>\n<li>Use <code>Distance</code> in degrees or converted to km</li>\n</ul>\n</li>\n<li>Sort farms by <strong>Efficiency Score</strong> descending</li>\n<li>Display the top 5 most efficient farms</li>\n</ol>\n<span class=\"paragraph\"><strong>Hints:</strong></span>\n<ul>\n<li>In Pandas:\n  <div class=\"language-python codehilite\"><pre><span></span><code><span class=\"n\">df_farms</span><span class=\"p\">[</span><span class=\"s1\">&#39;Efficiency&#39;</span><span class=\"p\">]</span> <span class=\"o\">=</span> <span class=\"n\">df_farms</span><span class=\"p\">[</span><span class=\"s1\">&#39;Yield&#39;</span><span class=\"p\">]</span> <span class=\"o\">/</span> <span class=\"p\">(</span><span class=\"mi\">1</span> <span class=\"o\">+</span> <span class=\"n\">df_farms</span><span class=\"p\">[</span><span class=\"s1\">&#39;Distance&#39;</span><span class=\"p\">])</span>\n<span class=\"n\">df_farms</span><span class=\"o\">.</span><span class=\"n\">sort_values</span><span class=\"p\">(</span><span class=\"s1\">&#39;Efficiency&#39;</span><span class=\"p\">,</span> <span class=\"n\">ascending</span><span class=\"o\">=</span><span class=\"kc\">False</span><span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">head</span><span class=\"p\">(</span><span class=\"mi\">10</span><span class=\"p\">)</span>\n</code></pre></div></li>\n<li>In Polars:\n  <div class=\"language-python codehilite\"><pre><span></span><code><span class=\"n\">df_farms_pl</span><span class=\"o\">.</span><span class=\"n\">with_columns</span><span class=\"p\">(</span>\n    <span class=\"p\">(</span><span class=\"n\">pl</span><span class=\"o\">.</span><span class=\"n\">col</span><span class=\"p\">(</span><span class=\"s1\">&#39;Yield&#39;</span><span class=\"p\">)</span> <span class=\"o\">/</span> <span class=\"p\">(</span><span class=\"mi\">1</span> <span class=\"o\">+</span> <span class=\"n\">pl</span><span class=\"o\">.</span><span class=\"n\">col</span><span class=\"p\">(</span><span class=\"s1\">&#39;Distance&#39;</span><span class=\"p\">)))</span><span class=\"o\">.</span><span class=\"n\">alias</span><span class=\"p\">(</span><span class=\"s1\">&#39;Efficiency&#39;</span><span class=\"p\">)</span>\n<span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">sort</span><span class=\"p\">(</span><span class=\"s1\">&#39;Efficiency&#39;</span><span class=\"p\">,</span> <span class=\"n\">descending</span><span class=\"o\">=</span><span class=\"kc\">True</span><span class=\"p\">)</span><span class=\"o\">.</span><span class=\"n\">head</span><span class=\"p\">(</span><span class=\"mi\">10</span><span class=\"p\">)</span>\n</code></pre></div></li>\n</ul>\n<span class=\"paragraph\"><strong>Level:</strong> Advanced\n<strong>Topics:</strong> Pandas, Polars, Python, Geospatial, Data Aggregation</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "IWgg",
+      "code_hash": "cab2968d0a3774bac775c2bfc04543a9",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "fCoF",
+      "code_hash": "b7490dbbaa480e8344c635849b2454ce",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "LkGn",
+      "code_hash": "ba1cc53ef213ceceb8db9a4ce54e59e1",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "zVRe",
+      "code_hash": "9c63881d70cc6d147062f94d4a2ec37e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Explanation of the Solution:</strong></span>\n<ul>\n<li>The <strong>Efficiency</strong> metric combines <strong>Yield</strong> and <strong>Distance</strong> to create a single value that rewards farms with high production but penalizes those that are farther away.</li>\n<li>\n<span class=\"paragraph\">The formula <code>Efficiency = Yield / (1 + Distance)</code>:</span>\n<ul>\n<li>Uses <strong>Yield</strong> as the numerator so higher yield increases efficiency.</li>\n<li>Adds 1 to the <strong>Distance</strong> in the denominator to avoid division by zero.</li>\n<li>Penalizes farms that are farther away (higher Distance) while still keeping the metric in a reasonable range.</li>\n</ul>\n</li>\n<li>In Pandas, vectorized operations (<code>/</code> and <code>+</code>) allow fast computation for the entire column.</li>\n<li>In Polars, the same calculation is done with <code>with_columns()</code> and expressions for efficiency.</li>\n<li>Sorting the <code>Efficiency</code> column descending identifies the <strong>top-performing farms</strong> quickly.</li>\n<li>\n<span class=\"paragraph\">Note: In this synthetic dataset, <code>Distance</code> is a random value, so the metric is illustrative. In real surveys, <code>Distance</code> could be computed as:</span>\n<ul>\n<li>Euclidean distance to a reference point (like a market or survey office)</li>\n<li>Distance to the nearest farm</li>\n<li>Or using geospatial coordinates converted to kilometers</li>\n</ul>\n</li>\n<li>Displaying the <strong>top 5 farms</strong> helps survey analysts identify high-priority farms for logistics or further study.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}
